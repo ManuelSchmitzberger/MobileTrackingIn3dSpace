@@ -1,0 +1,46 @@
+% Display Mobile device Sensor Live
+% accelerometer+","+magneticField+","+gyroscope
+clc;
+clear;
+close all;
+
+addpath('./data');
+x = 0;
+
+% data
+fid = fopen('pipe');
+
+while(1)
+    x = x+1;
+    tline = fgets(fid);
+    disp(tline)
+    data = strsplit(tline, ',');
+    
+    % data Acceloremeter
+    yA1(x) = str2double(data(1));
+    yA2(x) = str2double(data(2));
+    yA3(x) = str2double(data(3));
+   
+    drawnow; 
+    plot(y1,'r','linewidth',3)
+    grid on;
+    hold on;
+    plot(y2,'g','linewidth',3)
+    plot(y3,'b','linewidth',3)
+    
+    title('ACCELEROMETER');
+    xlabel('Time in seconds');
+    ylabel('Digital Value');
+    axis([0,50,-10,10])
+    
+    if(x > 50) 
+        x = 0;
+        y1 = 0;
+        y2 = 0;
+        y3 = 0;
+        clf;  %clear figure
+        hold on; % again hold on after clearing
+    end
+end
+
+fclose(fid);
