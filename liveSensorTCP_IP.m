@@ -1,3 +1,11 @@
+%------------------------------------------------------------------------
+% Insitute:     Salzburg University of Applied Sciences  
+% Author:       Manuel Schmitzberger
+% Departement:  Information Technology & Systems
+% 
+%       Bugs and comments to: manuel.schmitzberger@live.com
+%------------------------------------------------------------------------
+
 % Display Mobile device Sensor Live
 % http://de.mathworks.com/help/instrument/writing-and-reading-data_f16-57447.html
 clc;
