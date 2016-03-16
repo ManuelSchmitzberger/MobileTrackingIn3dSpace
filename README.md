@@ -3,7 +3,7 @@ mobile tracking in 3d-space
 #####read live sensor data via FILE and ADB
 set ADB logcat buffer (10MB):
 ```bash
-logcat -G 10M
+adb logcat -G 10M
 ```
 clear ADB buffer:
 ```bash
@@ -18,10 +18,11 @@ ADB logcat forward to pipe:
 adb logcat -s AV-SDK | grep --line-buffered MotionCapturing | sed -u s/\.\*MotionCapturing://g > pipe
 ```
 
-#####read live sensor data via TCP/IP
-not implemented now
-#####read live sensor data via Serial
-not implemented now
+#####read live sensor data via FILE and TCP/IP
+- use same comands above
+```bash
+nc -k -l 4000 > pipe 
+```
 
 
 

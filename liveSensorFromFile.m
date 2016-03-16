@@ -79,6 +79,21 @@ while(1)
     ylabel('Digital Value');
     xlim([0 xMax])
     
+    % SHOW 
+    plot3dObject();
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     if(x > xMax) 
         x = 0;
         yA1 = 0;
