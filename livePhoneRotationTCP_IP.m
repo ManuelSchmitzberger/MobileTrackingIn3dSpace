@@ -32,64 +32,43 @@ xMax = 50;
 while (true)
     x = x+1;
     tline = fgets(t);
-    %disp(tline)
+    disp(tline)
     data = strsplit(tline, ',');
-    if ~isnan(tline)
-        dlmwrite('csvData.csv',str2double(data(:)).','delimiter',',','-append');
-    end
     %disp(data)
         
-    % data Acceloremeter
-    yA1(x) = str2double(data(1));
-    yA2(x) = str2double(data(2));
-    yA3(x) = str2double(data(3));
-    % data Magnetometer
-    yM1(x) = str2double(data(4));
-    yM2(x) = str2double(data(5));
-    yM3(x) = str2double(data(6));
-    % data Gyroscope
-    yG1(x) = str2double(data(7));
-    yG2(x) = str2double(data(8));
-    yG3(x) = str2double(data(9));
+    % azimuth
+    yA1(x) = str2double(data(11));
+    % pitch
+    yA2(x) = str2double(data(12));
+    % roll
+    yA3(x) = str2double(data(13));
    
-    % plot Accelerometer
+    % plot azimuth
     drawnow; 
     subplot(3,1,1);
     plot(yA1,'r','linewidth',3)
-    grid on;
-    hold on;
-    plot(yA2,'g','linewidth',3)
-    plot(yA3,'b','linewidth',3)
     
-    title('ACCELEROMETER');
+    title('azimuth');
     xlabel('Time in seconds');
     ylabel('Digital Value');
     xlim([0 xMax])
     
-    % plot Magnetometer
+    % plot pitch
     drawnow; 
     subplot(3,1,2);
-    plot(yM1,'r','linewidth',3)
-    grid on;
-    hold on;
-    plot(yM2,'g','linewidth',3)
-    plot(yM3,'b','linewidth',3)
+    plot(yA2,'g','linewidth',3)
     
-    title('MAGNETOMETER');
+    title('pitch');
     xlabel('Time in seconds');
     ylabel('Digital Value');
     xlim([0 xMax])
     
-    % plot Gyrometer
+    % plot roll
     drawnow; 
     subplot(3,1,3);
-    plot(yG1,'r','linewidth',3)
-    grid on;
-    hold on;
-    plot(yG2,'g','linewidth',3)
-    plot(yG3,'b','linewidth',3)
+    plot(yA3,'b','linewidth',3)
     
-    title('GYROMETER');
+    title('roll');
     xlabel('Time in seconds');
     ylabel('Digital Value');
     xlim([0 xMax])
@@ -99,14 +78,6 @@ while (true)
         yA1 = 0;
         yA2 = 0;
         yA3 = 0;
-        
-        yM1 = 0;
-        yM2 = 0;
-        yM3 = 0;
-        
-        yG1 = 0;
-        yG2 = 0;
-        yG3 = 0;
         clf;  %clear figure
         hold on; % again hold on after clearing
     end

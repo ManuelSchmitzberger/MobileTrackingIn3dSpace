@@ -24,6 +24,10 @@ adb logcat -s AV-SDK | grep --line-buffered MotionCapturing | sed -u s/\.\*Motio
 nc -k -l 4000 > pipe 
 ```
 
+#####data construction, which are calculated in the mobile device
+```
+String data = accelerometerValues + "," + magneticValues + "," + gyroscopeValues + ",:," + azimuth + "," + pitch + "," + roll;
+```
 
 
 

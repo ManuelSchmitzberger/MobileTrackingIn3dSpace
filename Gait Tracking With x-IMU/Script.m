@@ -1,6 +1,11 @@
 clear;
 close all;
 clc;
+
+%%
+clear;
+close all;
+clc;
 addpath('Quaternions');
 addpath('ximu_matlab_library');
 
@@ -32,6 +37,19 @@ accX = xIMUdata.CalInertialAndMagneticData.Accelerometer.X;
 accY = xIMUdata.CalInertialAndMagneticData.Accelerometer.Y;
 accZ = xIMUdata.CalInertialAndMagneticData.Accelerometer.Z;
 clear('xIMUdata');
+
+
+% M = csvread('Datasets/csvData.csv');
+% acc = [M(:,1), M(:,2), M(:,3)]./9.81;
+% gyr = radtodeg([M(:,7), M(:,8), M(:,9)]);
+% time = xIMUdata.CalInertialAndMagneticData.Time;
+% gyrX = gyr(:,1);
+% gyrY = gyr(:,2);
+% gyrZ = gyr(:,3);
+% accX = gyr(:,1);
+% accY = gyr(:,2);
+% accZ = gyr(:,3);
+
 
 % -------------------------------------------------------------------------
 % Manually frame data
@@ -73,7 +91,7 @@ stationary = acc_magFilt < 0.05;
 % -------------------------------------------------------------------------
 % Plot data raw sensor data and stationary periods
 
-figure('Position', [9 39 900 600], 'Number', 'off', 'Name', 'Sensor Data');
+figure();
 ax(1) = subplot(2,1,1);
     hold on;
     plot(time, gyrX, 'r');
@@ -135,7 +153,7 @@ acc = quaternRotate([accX accY accZ], quaternConj(quat));
 acc = acc * 9.81;
 
 % Plot translational accelerations
-figure('Position', [9 39 900 300], 'Number', 'off', 'Name', 'Accelerations');
+figure();
 hold on;
 plot(time, acc(:,1), 'r');
 plot(time, acc(:,2), 'g');
@@ -176,7 +194,7 @@ end
 vel = vel - velDrift;
 
 % Plot translational velocity
-figure('Position', [9 39 900 300], 'Number', 'off', 'Name', 'Velocity');
+figure();
 hold on;
 plot(time, vel(:,1), 'r');
 plot(time, vel(:,2), 'g');
@@ -197,7 +215,7 @@ for t = 2:length(pos)
 end
 
 % Plot translational position
-figure('Position', [9 39 900 600], 'Number', 'off', 'Name', 'Position');
+figure();
 hold on;
 plot(time, pos(:,1), 'r');
 plot(time, pos(:,2), 'g');

@@ -80,14 +80,15 @@ function fig = SixDOFanimation(varargin)
         if(isempty(fileName))
             sprintf('AVI file not created as file already exists.')
         else
-            aviobj = avifile(fileName, 'fps', AVIfps, 'compression', 'Cinepak', 'quality', 100);
+            aviobj = VideoWriter(fileName);
+            open(aviobj);
         end
     end
 
     %% Setup figure and plot
 
     % Create figure
-    fig = figure('Number', 'off', 'Name', '6DOF Animation');
+    fig = figure();
     if(FullScreen)
         screenSize = get(0, 'ScreenSize');
         set(fig, 'Position', [0 0 screenSize(3) screenSize(4)]);
@@ -240,7 +241,7 @@ function fig = SixDOFanimation(varargin)
         % Add frame to AVI object
         if(~isempty(aviobj))
             frame = getframe(fig);
-            aviobj = addframe(aviobj, frame);
+            writeVideo(aviobj, frame);
         end
 
     end
